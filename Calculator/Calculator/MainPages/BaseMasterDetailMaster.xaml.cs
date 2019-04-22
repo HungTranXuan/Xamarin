@@ -33,11 +33,13 @@ namespace Calculator
             {
                 MenuItems = new ObservableCollection<BaseMasterDetailMenuItem>(new[]
                 {
-                    new BaseMasterDetailMenuItem { Id = 0, Title = "Page 1" },
-                    new BaseMasterDetailMenuItem { Id = 1, Title = "Page 2" },
-                    new BaseMasterDetailMenuItem { Id = 2, Title = "Page 3" },
-                    new BaseMasterDetailMenuItem { Id = 3, Title = "Page 4" },
-                    new BaseMasterDetailMenuItem { Id = 4, Title = "Page 5" },
+                    new BaseMasterDetailMenuItem { Id = 0, Title = "Main Page"},
+                    new BaseMasterDetailMenuItem { Id = 1, Title = "Tabbed Page" },
+                    new BaseMasterDetailMenuItem { Id = 2, Title = "Caroused Page" },
+                    new BaseMasterDetailMenuItem { Id = 3, Title = "Demo Label" },
+                    new BaseMasterDetailMenuItem { Id = 4, Title = "Demo Entry" },
+                    new BaseMasterDetailMenuItem { Id = 5, Title = "Demo Picker" },
+                    new BaseMasterDetailMenuItem { Id = 6, Title = "Demo Slider"}
                 });
             }
 

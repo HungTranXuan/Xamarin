@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="Calculator.DemoLabelPage">
+    <ScrollView>
+        <StackLayout Margin="20,35,20,20">
+        <Label Text="This is underlined text." TextDecorations="Underline"  />
+        <Label Text="This is text with strikethrough." TextDecorations="Strikethrough" />
+        <Label Text="This is underlined text with strikethrough." TextDecorations="Underline, Strikethrough" />
+        <Label TextColor="#77d065" FontSize = "20" Text="This is a green label." />
+        <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In facilisis nulla eu felis fringilla vulputate. Nullam porta eleifend lacinia. Donec at iaculis tellus."
+       LineBreakMode="WordWrap"
+       MaxLines="2" />
+        <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In facilisis nulla eu felis fringilla vulputate. Nullam porta eleifend lacinia. Donec at iaculis tellus."
+       LineBreakMode="WordWrap"
+       LineHeight="1.8" />
+            <Label LineBreakMode="WordWrap">
+    <Label.FormattedText>
+        <FormattedString>
+            <Span Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In a tincidunt sem. Phasellus mollis sit amet turpis in rutrum. Sed aliquam ac urna id scelerisque. "
+                  LineHeight="1.8"/>
+            <Span Text="Nullam feugiat sodales elit, et maximus nibh vulputate id."
+                  LineHeight="1.8" />
+        </FormattedString>
+    </Label.FormattedText>
+</Label>
+        <Label>
+    <Label.FormattedText>
+        <FormattedString>
+            <Span Text="Alternatively, click " />
+            <Span Text="here"
+                  TextColor="Blue"
+                  TextDecorations="Underline">
+                <Span.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding TapCommand}"
+                                          CommandParameter="https://docs.microsoft.com/xamarin/" />
+                </Span.GestureRecognizers>
+            </Span>
+            <Span Text=" to view Xamarin documentation." />
+        </FormattedString>
+    </Label.FormattedText>
+</Label>
+            <Label LineBreakMode="WordWrap">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="Red Bold, " TextColor="Red" FontAttributes="Bold" />
+                    <Span Text="default, " Style="{DynamicResource BodyStyle}">
+                        <Span.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding TapCommand}" />
+                        </Span.GestureRecognizers>
+                    </Span>
+                    <Span Text="italic small." FontAttributes="Italic" FontSize="Small" />
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+   </StackLayout>
+    </ScrollView>
+    
+</ContentPage>
