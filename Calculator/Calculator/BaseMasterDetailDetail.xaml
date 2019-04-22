@@ -1,6 +1,142 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Calculator.BaseMasterDetailDetail" Title="Detail">
-    <StackLayout Padding="10">
-        <Label Text="This is a detail page. To get the 'triple' line icon on each platform add a icon to each platform and update the 'Master' page with an Icon that references it." />
-    </StackLayout>
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="Calculator.BaseMasterDetailDetail" 
+             Title="Basic Calculation">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <OnPlatform.iOS>0,0,0,0</OnPlatform.iOS>
+            <OnPlatform.Android>10,0</OnPlatform.Android>
+        </OnPlatform>
+    </ContentPage.Padding>
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Info" Priority="0" Order="Primary" Clicked="OnInfoPageClicked"/>
+    </ContentPage.ToolbarItems>
+    
+    <!-- Begin  Styling-->
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Begin Implicit Styling for resultLabet texts and buttons-->
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="36"/>
+                <Setter Property="FontAttributes" Value="None"/>
+                <Setter Property="BackgroundColor" Value="#636260"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="36"/>
+                <Setter Property="HorizontalTextAlignment" Value="End"/>
+                <Setter Property="LineBreakMode" Value="WordWrap"/>
+                <Setter Property="Grid.Row" Value="0"/>
+                <Setter Property="Grid.ColumnSpan" Value="4"/>
+            </Style>
+            <!-- End Implicit Styling for resultLabet texts-->
+            <!-- Begin  Explicit Styling for Number buttons-->
+            <Style x:Key="numberButton" TargetType="Button" BasedOn="{StaticResource buttonStyle}">
+                
+                <Setter Property="BackgroundColor" Value="#848481"/>
+                <!--Property "Clicked" can NOT be added here -->
+            </Style>
+            <Style x:Key="operatorButton" TargetType="Button" BasedOn="{StaticResource buttonStyle}">
+                
+                <Setter Property="BackgroundColor" Value="#FD9E2A"/>
+                <Setter Property="Grid.Column" Value="3"/>
+            </Style>
+            <!-- End  Explicit Styling for Number buttons-->
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid Padding="0,0" RowSpacing="1" ColumnSpacing="1" BackgroundColor="Gray">
+
+       <Grid.RowDefinitions>
+         
+         <RowDefinition Height="2*" />
+         <RowDefinition Height="*" />
+         <RowDefinition Height="*" />
+         <RowDefinition Height="*" />
+         <RowDefinition Height="*" />
+         <RowDefinition Height="*" />
+       </Grid.RowDefinitions>
+
+       <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="*" />
+       </Grid.ColumnDefinitions>
+        
+       
+      
+        <ScrollView BackgroundColor="#636260" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4">
+            <ScrollView.GestureRecognizers>
+                <SwipeGestureRecognizer Direction="Right" Swiped="OnSwiped" />
+            </ScrollView.GestureRecognizers>
+            <Label x:Name="resultText"  VerticalTextAlignment="Bottom" />
+        </ScrollView>
+       
+            
+       <Button Text="AC" Grid.Row="1" Grid.Column="0"
+               BackgroundColor="#72716F" TextColor="White"
+               FontSize="36" BorderRadius="0" Clicked="OnClear" />
+       <Button Text="+/-" Grid.Row="1" Grid.Column="1"
+               BackgroundColor="#72716F" TextColor="White"
+               FontSize="36" BorderRadius="0" Clicked="OnSelectNegate" />
+       <Button Text="%" Grid.Row="1" Grid.Column="2"
+               BackgroundColor="#72716F" Style="{StaticResource operatorButton}" 
+               Clicked="OnSelectOperator" />
+
+      <Button Text="7" Grid.Row="2" Grid.Column="0"
+               Style="{StaticResource numberButton}"
+               Clicked="OnSelectNumber"/>
+       <Button Text="8" Grid.Row="2" Grid.Column="1"
+               Style="{StaticResource numberButton}"
+               Clicked="OnSelectNumber"/>
+       <Button Text="9" Grid.Row="2" Grid.Column="2"
+               Style="{StaticResource numberButton}"
+               Clicked="OnSelectNumber"/>
+
+      <Button Text="4" Grid.Row="3" Grid.Column="0"
+               Style="{StaticResource numberButton}"
+               Clicked="OnSelectNumber"/>
+       <Button Text="5" Grid.Row="3" Grid.Column="1"
+               Style="{StaticResource numberButton}"
+               Clicked="OnSelectNumber"/>
+       <Button Text="6" Grid.Row="3" Grid.Column="2"
+               Style="{StaticResource numberButton}"
+               Clicked="OnSelectNumber"/>
+       <Button Text="1" Grid.Row="4" Grid.Column="0" 
+               Style="{StaticResource numberButton}"
+               Clicked="OnSelectNumber"/>
+        <Button Text="2" Grid.Row="4" Grid.Column="1"
+               Style="{StaticResource numberButton}"
+                Clicked="OnSelectNumber"/>
+        <Button Text="3" Grid.Row="4" Grid.Column="2"
+               Style="{StaticResource numberButton}"
+                Clicked="OnSelectNumber"/>
+
+       <Button Text="÷" Grid.Row="1" 
+               Style="{StaticResource operatorButton}" 
+               Clicked="OnSelectOperator" />
+       <Button Text="×" Grid.Row="2" 
+               Style="{StaticResource operatorButton}"
+               Clicked="OnSelectOperator" />
+       <Button Text="-" Grid.Row="3"
+               Style="{StaticResource operatorButton}" 
+               Clicked="OnSelectOperator" />
+       <Button Text="+" Grid.Row="4" 
+               Style="{StaticResource operatorButton}" 
+               Clicked="OnSelectOperator" />
+
+       <Button Text="0" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"
+               Style="{StaticResource numberButton}"
+               Clicked="OnSelectNumber" />
+        <Button Text="." Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="1"
+               BackgroundColor="#848481" TextColor="White"
+               FontSize="36" BorderRadius="0" Clicked="OnSelectDot" />
+
+       <Button Text="=" Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="1"
+                BackgroundColor="#FD9E2A" TextColor="White"
+                FontSize="36" BorderRadius="0" Clicked="OnCalculate" />
+
+    </Grid>
 </ContentPage>

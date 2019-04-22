@@ -13,9 +13,30 @@ namespace Calculator
     [DesignTimeVisible(true)]
     public partial class MainPage : ContentPage
     {
-        public MainPage()
+        int clickCount = 0;
+        public MainPage(string number = null)
         {
             InitializeComponent();
+            Resources["labelStyle"] = Resources["blueStyle"];
+            if (!String.IsNullOrEmpty(number))
+            {
+                Title = number;
+            }
+        }
+
+        void OnBackButtonClicked(object sender, EventArgs e)
+        {
+            if (clickCount % 2 == 0)
+            {
+                Resources["labelStyle"] = Resources["redStyle"];
+                clickCount = 0;
+            }
+            else
+            {
+                Resources["labelStyle"] = Resources["blueStyle"];
+                clickCount = 1;
+            }
+            Navigation.PopAsync(true);
         }
     }
 }
