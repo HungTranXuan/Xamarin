@@ -39,7 +39,8 @@ namespace Calculator
                     new BaseMasterDetailMenuItem { Id = 3, Title = "Demo Label" },
                     new BaseMasterDetailMenuItem { Id = 4, Title = "Demo Entry" },
                     new BaseMasterDetailMenuItem { Id = 5, Title = "Demo Picker" },
-                    new BaseMasterDetailMenuItem { Id = 6, Title = "Demo Slider"}
+                    new BaseMasterDetailMenuItem { Id = 6, Title = "Demo Slider"},
+                    new BaseMasterDetailMenuItem { Id = 7, Title = "Demo Date Picker"}
                 });
             }
 

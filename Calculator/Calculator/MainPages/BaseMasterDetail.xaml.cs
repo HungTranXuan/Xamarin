@@ -53,6 +53,11 @@ namespace Calculator
                     Detail = new NavigationPage(new DemoPickerPage());
                     IsPresented = false;
                     break;
+                case 6:
+                    Detail = new NavigationPage(new DemoSliderPage());
+                    IsPresented = false;
+                    break;
+
                 default:
                     return;
             }
