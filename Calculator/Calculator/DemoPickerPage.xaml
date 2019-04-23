@@ -7,7 +7,8 @@
             <Label Text="Monkeys" 
                    FontAttributes="Bold" 
                    HorizontalOptions="Center" />
-            <Picker Title="Select a monkey" 
+            <Picker x:Name="pickerView"
+                    Title="Select a monkey" 
                     TitleColor="Red"
                     ItemsSource="{Binding Monkeys}" 
                     ItemDisplayBinding="{Binding Name}"

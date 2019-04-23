@@ -57,7 +57,18 @@ namespace Calculator
                     Detail = new NavigationPage(new DemoSliderPage());
                     IsPresented = false;
                     break;
-
+                case 7:
+                    Detail = new NavigationPage(new DemoDatePicker());
+                    IsPresented = false;
+                    break;
+                case 8:
+                    Detail = new NavigationPage(new DemoTimePicker());
+                    IsPresented = false;
+                    break;
+                case 9:
+                    Detail = new NavigationPage(new DemoImagesPage());
+                    IsPresented = false;
+                    break;
                 default:
                     return;
             }

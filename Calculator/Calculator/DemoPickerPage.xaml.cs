@@ -11,6 +11,13 @@ namespace Calculator
         {
             InitializeComponent();
             BindingContext = new MonkeysPageViewModel();
+
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            pickerView.Focus();
         }
     }
 }
