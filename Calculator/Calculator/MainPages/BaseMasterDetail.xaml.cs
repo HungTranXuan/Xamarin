@@ -69,6 +69,10 @@ namespace Calculator
                     Detail = new NavigationPage(new DemoImagesPage());
                     IsPresented = false;
                     break;
+                case 10:
+                    Detail = new NavigationPage(new DemoTriggersPage());
+                    IsPresented = false;
+                    break;
                 default:
                     return;
             }
