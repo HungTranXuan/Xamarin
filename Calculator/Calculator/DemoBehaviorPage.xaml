@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Calculator;assembly=Calculator"
+             x:Class="Calculator.DemoBehaviorPage">
+    <ContentPage.BindingContext>
+        <local:EventToCommandViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="NumericValidationStyle" TargetType="Entry">
+                <Style.Setters>
+                    <Setter Property="local:NumericValidationBehaviorStyle.AttachBehavior" Value="true" />
+                </Style.Setters>
+            </Style>
+            <local:SelectedItemEventArgsToSelectedItemConverter x:Key="SelectedItemConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView>
+        <StackLayout Padding="0,20,0,0">
+            <Label Text="Red when the number isn't valid" FontSize="Small" />
+            <Entry Placeholder="Enter a System.Double" 
+               local:NumericValidationAttachedBehavior.AttachBehavior="true" />
+            <Label Text="Demo behavior with style" FontSize="Small" />
+            <Entry Placeholder="Enter a System.Double" 
+               Style="{StaticResource NumericValidationStyle}" />
+            <Label Text="Effects Demo with a Behavior" FontAttributes="Bold" HorizontalOptions="Center" />
+            <Label Text="Label Shadow Effect" FontAttributes="Bold" HorizontalOptions="Center">
+            <Label.Behaviors>
+                <local:EffectBehavior Group="Xamarin" Name="LabelShadowEffect" />
+            </Label.Behaviors>
+        </Label>
+        <Label Text="Behaviors Demo" FontAttributes="Bold" HorizontalOptions="Center" />
+        <ListView ItemsSource="{Binding People}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Name}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.Behaviors>
+                <local:EventToCommandBehavior EventName="ItemSelected" Command="{Binding OutputAgeCommand}" Converter="{StaticResource SelectedItemConverter}" />
+            </ListView.Behaviors>
+        </ListView>
+        <Label Text="{Binding SelectedItemText}" />
+        </StackLayout>
+    </ScrollView>
+    
+</ContentPage>

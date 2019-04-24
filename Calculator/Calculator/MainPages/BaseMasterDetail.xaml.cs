@@ -73,6 +73,10 @@ namespace Calculator
                     Detail = new NavigationPage(new DemoTriggersPage());
                     IsPresented = false;
                     break;
+                case 11:
+                    Detail = new NavigationPage(new DemoBehaviorPage());
+                    IsPresented = false;
+                    break;
                 default:
                     return;
             }
