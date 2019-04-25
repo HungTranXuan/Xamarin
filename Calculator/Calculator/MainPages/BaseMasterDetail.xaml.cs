@@ -77,6 +77,10 @@ namespace Calculator
                     Detail = new NavigationPage(new DemoBehaviorPage());
                     IsPresented = false;
                     break;
+                case 12:
+                    Detail = new NavigationPage(new DemoCommandPage());
+                    IsPresented = false;
+                    break;
                 default:
                     return;
             }
