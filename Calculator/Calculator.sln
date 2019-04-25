@@ -54,4 +54,7 @@ Global
 		{ACBF3FF3-781D-49A1-A66F-D83B0139AD5C}.Release|iPhone.ActiveCfg = Release|Any CPU
 		{ACBF3FF3-781D-49A1-A66F-D83B0139AD5C}.Release|iPhone.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		outputpath = ../../../../../../../Volumes/UUI/Xamarin Builds/bin
+	EndGlobalSection
 EndGlobal

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:Calculator;assembly=Calculator"
+             x:Class="Calculator.DemoImagesPage">
+    <ScrollView>
+        <StackLayout Margin="20">
+            <Label Text="Image FileSource XAML" FontAttributes="Bold" HorizontalOptions="Center" />
+            <Image Source="avatar01" />
+            <Label Text="The image is referenced in XAML. On iOS and Android multiple resolutions are supplied and resolved at runtime." />
+            <Label Text="Image Embedded Resource Xaml" />
+            <!-- uses a custom Extension defined in this project for now -->
+            <Image Source="{local:EmbeddedImageResourceExtension Calculator.avatar02.jpg}" />
+
+            <Label Text="Calculator.avatar02.jpg embedded resource" />
+            <Label Text="Image UriSource Xaml" />
+            <Image Source="https://images.pexels.com/photos/2131726/pexels-photo-2131726.jpeg" />
+            <Label Text="Example Image from Internet gets downloaded" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:Calculator;assembly=Calculator"
+             x:Class="Calculator.DemoTriggersPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Entry">
+                <Style.Triggers>
+                    <Trigger TargetType="Entry"
+                         Property="IsFocused" Value="True">
+                    <Setter Property="BackgroundColor" Value="Blue" />
+                    <Setter Property="TextColor" Value="White" />
+                        <Trigger.EnterActions>
+                            <local:FadeTriggerAction StartsFrom="0" />
+                        </Trigger.EnterActions>
+                        <Trigger.ExitActions>
+                            <local:FadeTriggerAction StartsFrom="1" />
+                        </Trigger.ExitActions>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <local:MultiTriggerConverter x:Key="dataHasBeenEntered" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView>
+        <StackLayout Margin="5,10">
+            <Entry Placeholder="Property Trigger" />
+            <Label Text="This is an example of Data Trigger" />
+            <Label Text="Entry required length >0 before button is enable" />
+            <Entry x:Name="dataEntry" Text="" Placeholder="required field" />
+            <Button x:Name="saveButton" Text="Save" HorizontalOptions="Center" >
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button" 
+                      Binding="{Binding Source={x:Reference dataEntry}, Path=Text.Length}" 
+                                 Value="0">
+                        <Setter Property="IsEnabled" Value="False"/>
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
+            <Label Text="This is an example of Event Trigger" />
+            <Label Text="Text must be valid or it will return red" />
+            <Entry x:Name="eventEntry" Text="" Placeholder="Enter a Double number">
+                <Entry.Triggers>
+                    <EventTrigger Event="TextChanged">
+                        <local:NumericValidationTriggerAction />
+                    </EventTrigger>
+                </Entry.Triggers>
+            </Entry>
+            <Label Text="This is an example of Multi Trigger" />
+            <Label Text="You must provide either an email or phone number (or both):" />
+            <Entry x:Name="emailEntry" Text="" Placeholder="Email" Keyboard="Email" />
+            <Entry x:Name="phoneEntry" Text="" Placeholder="Phone" Keyboard="Telephone" />
+            <Button x:Name="confirmButton" Text="Confirm" HorizontalOptions="Center" FontSize="Large">
+                <Button.Triggers>
+                    <MultiTrigger TargetType="Button">
+                        <MultiTrigger.Conditions>
+                            <BindingCondition Binding="{Binding Source={x:Reference emailEntry},
+                                               Path=Text.Length}"
+                                           Value="0" />
+                            <BindingCondition Binding="{Binding Source={x:Reference phoneEntry},
+                                               Path=Text.Length}"
+                                           Value="0" /> 
+                        </MultiTrigger.Conditions>
+                        <Setter Property="IsEnabled" Value="False" />
+                    </MultiTrigger>
+                </Button.Triggers>
+            </Button>
+            <BoxView HeightRequest="3" HorizontalOptions="CenterAndExpand"  WidthRequest="250" Color="Green" />
+            <Label Text="Multi login Example. Both username and password are required"/>
+            <Entry x:Name="usernameEntry" Text="" Placeholder="Username" />
+            <Entry x:Name="passwordEntry" Text="" Placeholder="Password" IsPassword="true" />
+            <Button x:Name="loginButton" Text="Login" IsEnabled="false" HorizontalOptions="Center" >
+                <Button.Triggers>
+                    <MultiTrigger TargetType="Button">
+                        <MultiTrigger.Conditions>
+                            <BindingCondition 
+                            Binding="{Binding Source={x:Reference usernameEntry}, 
+                            Path=Text.Length, 
+                            Converter={StaticResource dataHasBeenEntered}}" Value="true"/>
+                            <BindingCondition 
+                            Binding="{Binding Source={x:Reference passwordEntry}, 
+                            Path=Text.Length, 
+                            Converter={StaticResource dataHasBeenEntered}}" Value="true"/>
+                        </MultiTrigger.Conditions>
+                        <Setter Property="IsEnabled" Value="true" />
+                    </MultiTrigger>
+                </Button.Triggers>
+            </Button>
+            <Label FontSize="Small" Text="Uses a converter on BindingConditions" />
+            <Label Text="EnterAction and ExitAction" FontSize="Large" />
+
+            <Label Text="FadeTriggerAction is triggered by IsFocused" FontSize="Small" />
+
+            <Entry Placeholder="enter job title" Text="">
+                <Entry.Triggers>
+                    <Trigger TargetType="Entry"
+                         Property="Entry.IsFocused" Value="True">
+                        <Trigger.EnterActions>
+                            <local:FadeTriggerAction StartsFrom="0" />
+                        </Trigger.EnterActions>
+
+                        <Trigger.ExitActions>
+                            <local:FadeTriggerAction StartsFrom="1" />
+                        </Trigger.ExitActions>
+                    </Trigger>
+                </Entry.Triggers>
+            </Entry>
+
+        <Entry Placeholder="enter company" Text="Xamarin" />
+
+        <Entry Placeholder="enter industry" Text="" />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
