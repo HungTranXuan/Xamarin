@@ -18,6 +18,10 @@
     
     <ContentPage.Resources>
         <ResourceDictionary>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="#ff5300"/>
+                <Setter Property="BarTextColor" Value="White"/>
+            </Style>
             <!-- Begin Implicit Styling for resultLabet texts and buttons-->
             <Style TargetType="Label">
                 <Setter Property="FontSize" Value="36"/>
