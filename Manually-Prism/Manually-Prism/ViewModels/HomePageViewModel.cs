@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 
@@ -15,19 +16,37 @@ using ManuallyPrism.Views;
 
 namespace ManuallyPrism.ViewModels
 {
-    public class HomePageViewModel : ViewModelBase
+    public class HomePageViewModel : BindableBase
     {
         INavigationService _navigationService;
-        public DelegateCommand<string> OnNavigateCommand { get; set; }
-        public HomePageViewModel(INavigationService navigationService) : base(navigationService)
+
+        public ObservableCollection<HomePageMenuItem> MenuItems { get; set; }
+
+        private HomePageMenuItem selectedMenuItem;
+        public HomePageMenuItem SelectedMenuItem
         {
-            _navigationService = navigationService;
-            OnNavigateCommand = new DelegateCommand<string>(NavigateAsync);
+            get => selectedMenuItem;
+            set => SetProperty(ref selectedMenuItem, value);
         }
 
-        async void NavigateAsync(string page)
+        public DelegateCommand NavigateCommand { get; private set; }
+        public HomePageViewModel(INavigationService navigationService)
         {
-            await _navigationService.NavigateAsync(new Uri(page, UriKind.Relative));
+            _navigationService = navigationService;
+            MenuItems = new ObservableCollection<HomePageMenuItem>(new[]
+            {
+                    new HomePageMenuItem { Id = 0, Title = "Prism Navigation", PageName = nameof(PrismNavigationPage) },
+                    new HomePageMenuItem { Id = 1, Title = "View A", PageName = nameof(ViewA) },
+                    new HomePageMenuItem { Id = 2, Title = "View B", PageName = nameof(ViewB) },
+                    new HomePageMenuItem { Id = 3, Title = "Page 4" },
+                    new HomePageMenuItem { Id = 4, Title = "Page 5" },
+            });
+            NavigateCommand = new DelegateCommand(Navigate);
+        }
+
+        async void Navigate()
+        {
+            await _navigationService.NavigateAsync(nameof(NavigationPage) + "/" + SelectedMenuItem.PageName);
         }
 
 

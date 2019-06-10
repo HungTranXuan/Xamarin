@@ -34,7 +34,7 @@ namespace ManuallyPrism.ViewModels
                     new HomePageMenuItem { Id = 2, Title = "Page 3" },
                     new HomePageMenuItem { Id = 3, Title = "Page 4" },
                     new HomePageMenuItem { Id = 4, Title = "Page 5" },
-                });
+            });
         }
 
         //#region INotifyPropertyChanged Implementation

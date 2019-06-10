@@ -7,7 +7,55 @@
                   prism:ViewModelLocator.AutowireViewModel="True"
                   x:Class="ManuallyPrism.Views.HomePage" >
     <MasterDetailPage.Master>
-        <pages:HomePageMaster x:Name="MasterPage"/>   
+        <ContentPage Title="Menu" >
+            <StackLayout>
+
+                    <ListView ItemsSource="{Binding MenuItems}"
+                              SelectedItem="{Binding SelectedMenuItem}"
+                              HasUnevenRows="true"
+                              SeparatorVisibility="None">
+                        <ListView.Header>
+                            <Grid BackgroundColor="#03A9F4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="10" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="80" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="10" />
+                                </Grid.RowDefinitions>
+                                <Label Grid.Column="1" Grid.Row="2" Text="AppName" 
+                                        Style="{DynamicResource SubtitleStyle}" />
+                            </Grid>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+
+                                    <!-- Main design for our menu items -->
+                                    <StackLayout Padding="15,10" 
+                                                 HorizontalOptions="FillAndExpand">
+
+                                        <Label Text="{Binding Title}"
+                                               FontSize="Medium"
+                                               VerticalOptions="Center"
+                                               TextColor="Black"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                        <ListView.Behaviors>
+                            <b:EventToCommandBehavior EventName="ItemTapped" 
+                                                      Command="{Binding NavigateCommand}" />
+                        </ListView.Behaviors>
+
+                    </ListView>
+                </StackLayout>
+        </ContentPage>   
     </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
         <NavigationPage>
