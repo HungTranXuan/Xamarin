@@ -6,7 +6,6 @@ using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Unity;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Manually_Prism
 {
@@ -17,12 +16,27 @@ namespace Manually_Prism
         protected override void OnInitialized()
         {
             InitializeComponent();
+
+
+            /*These following 2 lines demonstrates 2 different ways of Absolute Navigation in Prism.
+            One with a more details that specified a new Uri and its type of Absolute.
+            The other one is the simplified version with a forward slash at the beginning indication Absolute Navigation*/
+
+            //NavigationService.NavigateAsync(new Uri("http://www.Manuall-Prism/HomePage", UriKind.Absolute));
+            //NavigationService.NavigateAsync("/NavigationPage/PrismNavigationPage");
+
+            //The following line demostrates Deep Linking Navigation
+            NavigationService.NavigateAsync("NavigationPage/PrismNavigationPage/ViewA/ViewB");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
             containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
+            containerRegistry.RegisterForNavigation<PrismNavigationPage, PrismNavigationPageViewModel>();
+            containerRegistry.RegisterForNavigation<ViewA, ViewAViewModel>();
+            containerRegistry.RegisterForNavigation<ViewB, ViewBViewModel>();
+
         }
 
         protected override void OnStart()

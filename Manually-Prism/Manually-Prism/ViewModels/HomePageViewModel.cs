@@ -1,18 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
 using Prism;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Unity;
-using Prism.Navigation;
 using Prism.Commands;
+using Prism.Mvvm;
+using Prism.Navigation;
+using Xamarin.Forms;
+using ManuallyPrism.Views;
 
 namespace ManuallyPrism.ViewModels
 {
-    public class HomePageViewModel
+    public class HomePageViewModel : ViewModelBase
     {
         INavigationService _navigationService;
         public DelegateCommand<string> OnNavigateCommand { get; set; }
-        public HomePageViewModel(INavigationService navigationService)
+        public HomePageViewModel(INavigationService navigationService) : base(navigationService)
         {
             _navigationService = navigationService;
             OnNavigateCommand = new DelegateCommand<string>(NavigateAsync);
@@ -22,5 +29,7 @@ namespace ManuallyPrism.ViewModels
         {
             await _navigationService.NavigateAsync(new Uri(page, UriKind.Relative));
         }
+
+
     }
 }
