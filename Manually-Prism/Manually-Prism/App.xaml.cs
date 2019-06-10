@@ -23,10 +23,10 @@ namespace Manually_Prism
             The other one is the simplified version with a forward slash at the beginning indication Absolute Navigation*/
 
             //NavigationService.NavigateAsync(new Uri("http://www.Manuall-Prism/HomePage", UriKind.Absolute));
-            //NavigationService.NavigateAsync("/NavigationPage/PrismNavigationPage");
+            NavigationService.NavigateAsync("/NavigationPage/PrismNavigationPage");
 
             //The following line demostrates Deep Linking Navigation
-            NavigationService.NavigateAsync("NavigationPage/PrismNavigationPage/ViewA/ViewB");
+            //NavigationService.NavigateAsync("NavigationPage/PrismNavigationPage/ViewA/ViewB");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

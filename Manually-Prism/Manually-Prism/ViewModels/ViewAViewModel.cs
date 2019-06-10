@@ -36,7 +36,10 @@ namespace ManuallyPrism.ViewModels
 
         async void ExecuteDelegateCommand()
         {
-            await _navigationService.NavigateAsync("ViewB");
+            var param = new NavigationParameters();
+            param.Add("title", "Hello from View A");
+
+            await _navigationService.NavigateAsync("ViewB", param);
         }
     }
 }
