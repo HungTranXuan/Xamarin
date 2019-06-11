@@ -38,7 +38,7 @@ namespace ManuallyPrism.ViewModels
                     new HomePageMenuItem { Id = 0, Title = "Prism Navigation", PageName = nameof(PrismNavigationPage) },
                     new HomePageMenuItem { Id = 1, Title = "View A", PageName = nameof(ViewA) },
                     new HomePageMenuItem { Id = 2, Title = "View B", PageName = nameof(ViewB) },
-                    new HomePageMenuItem { Id = 3, Title = "Page 4" },
+                    new HomePageMenuItem { Id = 3, Title = "Prism Tabbed Page", PageName = nameof(PrismTabbedPage) },
                     new HomePageMenuItem { Id = 4, Title = "Page 5" },
             });
             NavigateCommand = new DelegateCommand(Navigate);
@@ -46,7 +46,24 @@ namespace ManuallyPrism.ViewModels
 
         async void Navigate()
         {
-            await _navigationService.NavigateAsync(nameof(NavigationPage) + "/" + SelectedMenuItem.PageName);
+            switch (SelectedMenuItem.Id)
+            {
+                case 0:
+                    await _navigationService.NavigateAsync(nameof(NavigationPage) + "/" + nameof(PrismNavigationPage));
+                    break;
+                case 1:
+                    await _navigationService.NavigateAsync(nameof(NavigationPage) + "/" + nameof(ViewA));
+                    break;
+                case 2:
+                    await _navigationService.NavigateAsync(nameof(NavigationPage) + "/" + nameof(ViewB));
+                    break;
+                case 3:
+                    await _navigationService.NavigateAsync(nameof(NavigationPage) + "/" + nameof(PrismTabbedPage) + "?selectedTab=ViewB");
+                    break;
+                default:
+                    break;
+            }
+            //await _navigationService.NavigateAsync(nameof(NavigationPage) + "/" + SelectedMenuItem.PageName);
         }
 
 

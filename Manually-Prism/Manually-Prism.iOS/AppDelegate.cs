@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using ManuallyPrism;
 using Prism;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -24,6 +25,7 @@ namespace Manually_Prism.iOS
         //
         // You have 17 seconds to return from this method, or iOS will terminate your application.
         //
+        static TextToSpeechImplementation textToSpeech = new TextToSpeechImplementation();
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
@@ -36,7 +38,7 @@ namespace Manually_Prism.iOS
         {
             public void RegisterTypes(IContainerRegistry containerRegistry)
             {
-
+                containerRegistry.RegisterInstance<ITextToSpeech>(textToSpeech);
             }
         }
     }

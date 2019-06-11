@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:pages="clr-namespace:ManuallyPrism.Views"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="ManuallyPrism.Views.MonkeysPage"
+             Title="Demo List View">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView ItemsSource="{Binding Monkeys}"
+                      SelectedItem="{Binding SelectedMonkey}"
+                      HasUnevenRows="true"
+                      SeparatorVisibility="Default"
+                      SeparatorColor="Gray">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="{Binding ImageUrl}" WidthRequest="80" HeightRequest="80"/>
+                                <StackLayout Orientation="Vertical">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Name}" 
+                                               FontSize="Default"
+                                               FontAttributes="Bold" />
+                                        <Label Text="{Binding Location}"
+                                               FontSize="Default"
+                                               FontAttributes="None" />
+                                    </StackLayout>
+                                    <Label Text="{Binding Details}"
+                                           FontSize="Default"
+                                           FontAttributes="None" />
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.Behaviors>
+                    
+                </ListView.Behaviors>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -36,6 +36,8 @@ namespace Manually_Prism
             containerRegistry.RegisterForNavigation<PrismNavigationPage, PrismNavigationPageViewModel>();
             containerRegistry.RegisterForNavigation<ViewA, ViewAViewModel>();
             containerRegistry.RegisterForNavigation<ViewB, ViewBViewModel>();
+            containerRegistry.RegisterForNavigation<PrismTabbedPage, PrismTabbedPageViewModel>();
+            containerRegistry.RegisterForNavigation<MonkeysPage, MonkeysPageViewModel>();
 
         }
 

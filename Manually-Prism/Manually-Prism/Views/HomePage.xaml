@@ -40,8 +40,9 @@
                                                  HorizontalOptions="FillAndExpand">
 
                                         <Label Text="{Binding Title}"
-                                               FontSize="Medium"
-                                               VerticalOptions="Center"
+                                               FontSize="24"
+                                               VerticalOptions="FillAndExpand"
+                                               VerticalTextAlignment="Center"
                                                TextColor="Black"/>
                                     </StackLayout>
                                 </ViewCell>

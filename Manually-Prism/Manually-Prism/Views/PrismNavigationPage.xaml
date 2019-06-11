@@ -8,7 +8,9 @@
     <ContentPage.Content>
         <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
             <Label Text="{Binding Title}" />
+            <Entry Text="{Binding EntryTextField}" Placeholder="Prism Entry" />
             <Button Text="Navigate to ViewA" Command="{Binding NavigateCommand}"/>
+            <Button Text="Read the Text" Command="{Binding SpeechCommand}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -25,25 +25,44 @@ namespace ManuallyPrism.ViewModels
     public class PrismNavigationPageViewModel : ViewModelBase, IConfirmNavigationAsync
     {
         private DelegateCommand _navigateCommand;
+        private DelegateCommand _speechCommand;
         private readonly INavigationService _navigationService;
         private readonly IPageDialogService _pageDialogService;
+        private readonly ITextToSpeech _speechService;
 
         public DelegateCommand NavigateCommand =>
             _navigateCommand ?? (_navigateCommand = new DelegateCommand(ExecuteDelegateCommand));
 
-        public PrismNavigationPageViewModel(INavigationService navigationService, IPageDialogService pageDialogService) : base(navigationService)
+        public DelegateCommand SpeechCommand =>
+            _speechCommand ?? (_speechCommand = new DelegateCommand(ExecuteSpeechCommand));
+
+        private string entryTextField;
+        public string EntryTextField
+        {
+            get => entryTextField;
+            set => SetProperty(ref entryTextField, value);
+        }
+
+        public PrismNavigationPageViewModel(INavigationService navigationService,
+            IPageDialogService pageDialogService, ITextToSpeech speechService) : base(navigationService)
         {
             Title = "Test Prism Navigation on Master Detail Page on Xamarin Form 8.0 and Prism 7.1";
             _navigationService = navigationService;
             _pageDialogService = pageDialogService;
+            _speechService = speechService;
         }
 
         async void ExecuteDelegateCommand()
         {
             var param = new NavigationParameters();
-            param.Add("title", "Hello from Main Page");
+            param.Add("title", EntryTextField);
 
             await _navigationService.NavigateAsync("ViewA", param);
+        }
+
+        void ExecuteSpeechCommand()
+        {
+            _speechService.Speak(EntryTextField);
         }
 
         public Task<bool> CanNavigateAsync(INavigationParameters parameters)

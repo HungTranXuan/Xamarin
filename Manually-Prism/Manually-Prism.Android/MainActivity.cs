@@ -11,12 +11,15 @@ using Prism;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Unity;
+using ManuallyPrism;
 
 namespace Manually_Prism.Droid
 {
     [Activity(Label = "Manually_Prism", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+        static TextToSpeechImplementation textToSpeech = new TextToSpeechImplementation();
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -40,7 +43,7 @@ namespace Manually_Prism.Droid
         {
             public void RegisterTypes(IContainerRegistry containerRegistry)
             {
-
+                containerRegistry.RegisterInstance<ITextToSpeech>(textToSpeech);
             }
         }
     }
