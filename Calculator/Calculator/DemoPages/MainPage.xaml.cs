@@ -5,12 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace Calculator
 {
     // Learn more about making custom code visible in the Xamarin.Forms previewer
     // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(true)]
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : ContentPage
     {
         int clickCount = 0;
@@ -22,9 +24,11 @@ namespace Calculator
             {
                 Title = number;
             }
+
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
-        void OnBackButtonClicked(object sender, EventArgs e)
+        async void OnBackButtonClicked(object sender, EventArgs e)
         {
             if (clickCount % 2 == 0)
             {
@@ -36,7 +40,7 @@ namespace Calculator
                 Resources["labelStyle"] = Resources["blueStyle"];
                 clickCount = 1;
             }
-            Navigation.PopAsync(true);
+            await Navigation.PopModalAsync(true);
         }
     }
 }

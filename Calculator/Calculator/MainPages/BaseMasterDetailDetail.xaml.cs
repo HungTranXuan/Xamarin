@@ -153,12 +153,12 @@ namespace Calculator
         //End Calculating on MainPage
 
         //Navigate to InfoPage
-        void OnInfoPageClicked(object sender, EventArgs e)
+        async void OnInfoPageClicked(object sender, EventArgs e)
         {
 
             var mainPage = new MainPage(resultText.Text);
 
-            Navigation.PushAsync(mainPage, true);
+            await Navigation.PushModalAsync(mainPage, true);
 
         }
     }
